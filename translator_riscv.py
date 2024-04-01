@@ -264,6 +264,10 @@ for line in lines:
                     opcode = JALR
                 else:
                     opcode = OP_IMM
+                if comm == "slli" or comm == "srli":
+                    imm = "0000000" + imm[7:12]
+                elif comm == "srai":
+                    imm = "0100000" + imm[7:12]
                 if flag_m:
                     immm = imm + "_" + subs_reg[arg2] + "_" + subs_opimm[comm] + "_" + subs_reg[arg1] + "_" + opcode
                 if flag_b or flag_h:
